@@ -16,6 +16,9 @@ var configs embed.FS
 
 func init() {
 	env := os.Getenv("ENV")
+	if env == "" {
+		env = "dev" // 设置默认值为 "dev"
+	}
 	vp := viper.New()
 	// 根据环境变量 ENV 决定要读取的应用启动配置
 	configFileStream, err := configs.ReadFile("application." + env + ".yaml")
